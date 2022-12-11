@@ -1,0 +1,44 @@
+welcome="""           ----------------------------------------
+          |           WELCOME TO THE GAME          |
+           ----------------------------------------"""
+Instructions="""1.You need to pick up a range of integers in which you will have to to guess the integer.
+2.You will have three guesses for the number."""
+
+print(welcome)
+print(">>Instructions")
+print(Instructions)
+print("---------------------------------------------------------------------------------------------------------------------")
+
+
+
+import random
+score = 0
+def game():
+    global score
+    count = 0
+    srange = int(input("Starting range: "))
+    erange = int(input("Ending range: "))
+    a = random.randint(srange, erange)
+    while count < 3:
+        num = int(input("Enter any number in this range: "))
+        if num == a:
+            print("Congrats!! you did it in your {}th count".format(count + 1))
+            score += 1
+            print("your score:", score)
+            break
+        elif num > a and count != 2:
+            print("Have one more try,your guess was too high.")
+        elif num < a and count != 2:
+            print("Have one more try,your guess was too small.")
+        if num != a and count == 2:
+            print("Sorry,try again next time")
+            print("The number was:",a)
+        count += 1
+while True:
+    game()
+    command = input("Do you want to play the game again:- ")
+    if command.lower() == 'yes':
+        game()
+    else:
+        print("Thanks for playing!!!!")
+        exit()
